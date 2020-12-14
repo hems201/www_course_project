@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  div#top_page
+    h1 Definitely-not-twitter
+    h2 Submit a post
+    div#form-group.container
+      form(method='POST' action='/create').col.s12
+          div.input-field.col.s12
+            label(for='user') Username:     
+            input#user.validate(type='text', placeholder='Who are you' name='user') 
+          div.input-field.col.s12
+            label(for='text') Post text:     
+            input#text.validate(type='text', maxlength='150' placeholder='Write your text here' name='text')
+            p Max 150 characters
+          button.btn.btn-primary(type='submit') Submit
+  div#bottom_page
+    h3 Feed
+    div#postlist.container
+      ul.collection
+      each post in post_list
+        div.flow-text.row.s12.m6
+            li.collection-item #{post.text}
+            li.collection-item posted by #{post.user}
+            
+
+      else
+        div.row
+          li.collection-item No posts yet :c
